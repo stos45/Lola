@@ -425,13 +425,10 @@
       display: flex; flex-direction: column; justify-content: flex-end;
       min-height: 160px; position: relative; overflow: hidden;
     }
-    .sd-tile:nth-child(1) { background: var(--lav-100); min-height: 200px; }
-    .sd-tile:nth-child(2) { background: var(--lav-200); }
-    .sd-tile:nth-child(3) { background: var(--lav-300); }
-    .sd-tile:nth-child(4) { background: var(--lav-500); min-height: 200px; }
-    .sd-tile:nth-child(1) .sd-tile-label, .sd-tile:nth-child(2) .sd-tile-label { color: var(--ink); }
-    .sd-tile:nth-child(1) .sd-tile-sub, .sd-tile:nth-child(2) .sd-tile-sub { color: var(--ink-soft); }
-    .sd-tile:nth-child(1) .sd-big-num, .sd-tile:nth-child(2) .sd-big-num { color: rgba(100,70,160,.12); }
+    .sd-tile:nth-child(1) { background: linear-gradient(to top, rgba(30,15,50,.78) 0%, rgba(20,10,40,.2) 60%, transparent 100%), url('zdj_do_strony/8.jpg') center/cover no-repeat; min-height: 200px; }
+    .sd-tile:nth-child(2) { background: linear-gradient(to top, rgba(30,15,50,.78) 0%, rgba(20,10,40,.2) 60%, transparent 100%), url('zdj_do_strony/4.jpeg') center/cover no-repeat; }
+    .sd-tile:nth-child(3) { background: linear-gradient(to top, rgba(30,15,50,.78) 0%, rgba(20,10,40,.2) 60%, transparent 100%), url('zdj_do_strony/2.jpeg') center/cover no-repeat; }
+    .sd-tile:nth-child(4) { background: linear-gradient(to top, rgba(30,15,50,.78) 0%, rgba(20,10,40,.2) 60%, transparent 100%), url('zdj_do_strony/7.jpeg') center/cover no-repeat; min-height: 200px; }
     .sd-tile-deco {
       position: absolute; border-radius: 50%; background: rgba(255,255,255,.12);
       pointer-events: none;
@@ -441,11 +438,11 @@
       font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 600;
       color: #fff; position: relative; z-index: 1;
     }
-    .sd-tile-sub { font-size: .6rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: rgba(255,255,255,.65); margin-top: .3rem; position: relative; z-index: 1; }
+    .sd-tile-sub { font-size: .6rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: rgba(255,255,255,.7); margin-top: .3rem; position: relative; z-index: 1; }
     .sd-big-num {
       position: absolute; top: 1rem; left: 1.25rem;
       font-family: 'Cormorant Garamond', serif; font-size: 3.5rem; font-weight: 300;
-      color: rgba(255,255,255,.15); line-height: 1;
+      color: rgba(255,255,255,.2); line-height: 1;
     }
 
     .services-cta { margin-top: 2.5rem; display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
