@@ -657,6 +657,56 @@
       display: flex; align-items: center; justify-content: center;
     }
 
+    /* ── HAMBURGER ── */
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      cursor: pointer; padding: 6px; background: none; border: none; z-index: 101;
+    }
+    .hamburger span {
+      display: block; width: 22px; height: 2px; background: var(--ink);
+      transition: transform .3s, opacity .3s;
+    }
+    .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.open span:nth-child(2) { opacity: 0; transform: translateX(8px); }
+    .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+    /* ── MOBILE MENU ── */
+    .mobile-menu {
+      position: fixed; inset: 0; z-index: 100;
+      background: rgba(253,251,253,.97); backdrop-filter: blur(20px);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 0; opacity: 0; pointer-events: none;
+      transition: opacity .3s;
+    }
+    .mobile-menu.open { opacity: 1; pointer-events: all; }
+    .mobile-menu-link {
+      font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 400;
+      color: var(--ink); text-decoration: none; letter-spacing: .06em;
+      padding: .6rem 0; border-bottom: 1px solid var(--lav-100); width: 70%; text-align: center;
+      transition: color .2s;
+    }
+    .mobile-menu-link:last-of-type { border-bottom: none; }
+    .mobile-menu-link:hover { color: var(--lav-500); }
+    .mobile-menu-phone {
+      margin-top: 2rem; font-size: 1rem; font-weight: 600; color: var(--lav-500);
+      text-decoration: none; letter-spacing: .08em;
+    }
+    .mobile-menu-social { display: flex; gap: 1rem; margin-top: 1.5rem; }
+    .mobile-menu-social a {
+      width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--lav-200);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--lav-500); text-decoration: none; transition: all .3s;
+    }
+    .mobile-menu-social a:hover { background: var(--lav-500); color: #fff; }
+    .mobile-menu-social svg { width: 14px; height: 14px; }
+
+    /* ── MAP ── */
+    .contact-map {
+      border-radius: 16px; overflow: hidden; margin-top: 2rem;
+      box-shadow: 0 8px 32px rgba(100,60,180,.1);
+    }
+    .contact-map iframe { display: block; width: 100%; height: 320px; border: 0; }
+
     /* ── ANIMATIONS ── */
     .reveal { opacity: 0; transform: translateY(28px); transition: opacity .75s ease, transform .75s ease; }
     .reveal.d1 { transition-delay: .1s; }
@@ -679,6 +729,7 @@
     @media (max-width: 700px) {
       nav, nav.scrolled { padding-inline: 1.5rem; }
       .nav-links, .nav-right { display: none; }
+      .hamburger { display: flex; }
       .hero, .section { padding: 7rem 1.5rem 4rem; }
       .cards-row { padding-inline: 1.5rem; }
       .cards-grid { grid-template-columns: 1fr; }
@@ -725,7 +776,32 @@
       </a>
     </div>
   </div>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#o-nas" class="mobile-menu-link" onclick="closeMobileMenu()">O nas</a>
+  <a href="#uslugi" class="mobile-menu-link" onclick="closeMobileMenu()">Usługi</a>
+  <a href="#galeria" class="mobile-menu-link" onclick="closeMobileMenu()">Galeria</a>
+  <a href="#szkolenia" class="mobile-menu-link" onclick="closeMobileMenu()">Szkolenia</a>
+  <a href="#kontakt" class="mobile-menu-link" onclick="closeMobileMenu()">Kontakt</a>
+  <a href="tel:+48797673934" class="mobile-menu-phone">797 673 934</a>
+  <div class="mobile-menu-social">
+    <a href="https://www.instagram.com/lolabeautyhouse/" target="_blank" rel="noopener" aria-label="Instagram">
+      <svg fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+        <rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor" stroke="none"/>
+      </svg>
+    </a>
+    <a href="https://www.facebook.com/Lolabeautyhousee/" target="_blank" rel="noopener" aria-label="Facebook">
+      <svg fill="currentColor" viewBox="0 0 24 24">
+        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+      </svg>
+    </a>
+  </div>
+</div>
 
 <!-- ════════════════════════════════ HERO ══ -->
 <section class="hero">
@@ -1178,6 +1254,15 @@
       </div>
     </div>
 
+    <!-- map -->
+    <div class="contact-map reveal">
+      <iframe
+        src="https://maps.google.com/maps?q=Rynek+22,+Trzebinia,+Polska&output=embed&z=16"
+        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        title="LOLA Beauty House — Rynek 22, Trzebinia">
+      </iframe>
+    </div>
+
     <!-- social -->
     <div class="contact-social-row reveal">
       <div class="c-social-label">Obserwuj nas</div>
@@ -1265,6 +1350,20 @@
     };
     img.src = 'sc_inspo/logo.jpg';
   })();
+
+  /* HAMBURGER */
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => {
+    const open = hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+  function closeMobileMenu() {
+    hamburger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+    document.body.style.overflow = '';
+  }
 
   /* NAV scroll */
   const nav = document.getElementById('nav');
