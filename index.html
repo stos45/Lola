@@ -547,9 +547,27 @@
     .ci-value a { color: inherit; text-decoration: none; transition: color .3s; }
     .ci-value a:hover { color: var(--lav-500); }
 
-    /* bottom: social left, booksy right */
-    .contact-bottom { display: grid; grid-template-columns: 1fr 1.7fr; gap: 4rem; align-items: start; }
-    .contact-social-block { display: flex; flex-direction: column; gap: 2rem; }
+    /* booksy hero banner */
+    .booksy-hero {
+      background: linear-gradient(135deg, var(--lav-500) 0%, var(--lav-dark) 100%);
+      border-radius: 24px; padding: 3.5rem 4rem;
+      display: flex; align-items: center; justify-content: space-between; gap: 3rem;
+      margin-bottom: 2rem;
+    }
+    .booksy-hero-left { flex: 1; }
+    .booksy-hero-badge { font-size: .62rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--lav-200); margin-bottom: 1rem; }
+    .booksy-hero-title {
+      font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 3.5vw, 3.2rem);
+      font-weight: 600; color: #fff; line-height: 1.1; margin-bottom: 1.25rem;
+    }
+    .booksy-hero-title em { font-style: italic; font-weight: 300; color: var(--lav-200); }
+    .booksy-hero-perks { display: flex; flex-wrap: wrap; gap: .6rem 2rem; }
+    .booksy-hero-perk { font-size: .8rem; color: rgba(255,255,255,.7); display: flex; align-items: center; gap: .5rem; }
+    .booksy-hero-perk::before { content: '✦'; color: var(--lav-300); font-size: .65rem; }
+    .booksy-hero-right { flex-shrink: 0; display: flex; flex-direction: column; align-items: center; gap: 1.25rem; min-width: 220px; }
+
+    /* social row */
+    .contact-social-row { display: flex; align-items: center; justify-content: space-between; margin-top: 2rem; flex-wrap: wrap; gap: 1rem; }
     .c-social-label { font-size: .62rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 1rem; }
     .social-pills { display: flex; gap: .75rem; flex-wrap: wrap; }
     .social-pill {
@@ -559,12 +577,6 @@
     }
     .social-pill svg { width: 13px; height: 13px; }
     .social-pill:hover { background: var(--lav-500); color: #fff; border-color: var(--lav-500); }
-    .contact-tagline {
-      font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 300;
-      font-style: italic; color: var(--ink-mid); line-height: 1.5;
-      padding-top: 1.5rem; border-top: 1px solid var(--lav-100);
-    }
-    .contact-tagline strong { color: var(--lav-500); font-weight: 600; font-style: normal; }
 
     /* booksy panel */
     .booksy-panel {
@@ -1114,6 +1126,26 @@
       <div class="eyebrow"><span class="eyebrow-d">✦</span> Kontakt</div>
       <h2 class="heading">Zarezerwuj <em>wizytę</em></h2>
     </div>
+    <!-- booksy hero banner -->
+    <div class="booksy-hero reveal">
+      <div class="booksy-hero-left">
+        <div class="booksy-hero-badge">✦ Rezerwacja online</div>
+        <h3 class="booksy-hero-title">Umów się przez<br /><em>Booksy</em></h3>
+        <div class="booksy-hero-perks">
+          <span class="booksy-hero-perk">Rezerwacja 24/7</span>
+          <span class="booksy-hero-perk">Przypomnienie SMS</span>
+          <span class="booksy-hero-perk">Wybór terminu online</span>
+          <span class="booksy-hero-perk">Bezpłatna konsultacja</span>
+        </div>
+      </div>
+      <div class="booksy-hero-right">
+        <a href="https://booksy.com/pl-pl/94609_lola-beauty-house_brwi-i-rzesy_10132_trzebinia" target="_blank" rel="noopener" class="booksy-btn">
+          Zarezerwuj wizytę →
+        </a>
+        <p class="booksy-note" style="color:rgba(255,255,255,.55);">Wolisz zadzwonić? <a href="tel:+48797673934" style="color:var(--lav-200);">797 673 934</a></p>
+      </div>
+    </div>
+
     <!-- 3 info cards -->
     <div class="contact-cards">
       <div class="ci-card reveal">
@@ -1146,47 +1178,22 @@
       </div>
     </div>
 
-    <!-- social + booksy -->
-    <div class="contact-bottom">
-      <div class="contact-social-block reveal">
-        <div>
-          <div class="c-social-label">Obserwuj nas</div>
-          <div class="social-pills">
-            <a href="https://www.instagram.com/lolabeautyhouse/" target="_blank" rel="noopener" class="social-pill">
-              <svg fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-                <rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor" stroke="none"/>
-              </svg>
-              Instagram
-            </a>
-            <a href="https://www.facebook.com/Lolabeautyhousee/" target="_blank" rel="noopener" class="social-pill">
-              <svg fill="currentColor" viewBox="0 0 24 24" width="13" height="13">
-                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
-              </svg>
-              Facebook
-            </a>
-          </div>
-        </div>
-        <p class="contact-tagline">Piękno to nasza<br /><strong>pasja i odpowiedzialność</strong></p>
-      </div>
-
-      <div class="reveal d1">
-        <div class="booksy-panel">
-          <div class="booksy-top">
-            <div class="booksy-badge">✦ Rezerwacja online</div>
-            <h3 class="booksy-title">Umów się przez<br /><em>Booksy</em></h3>
-            <p class="booksy-desc">Wybierz usługę, termin i godzinę — szybko i wygodnie online. Otrzymasz potwierdzenie SMS i przypomnienie o wizycie.</p>
-          </div>
-          <div class="booksy-perks">
-            <div class="booksy-perk"><span class="booksy-perk-icon">✦</span> Rezerwacja 24/7 — o każdej porze</div>
-            <div class="booksy-perk"><span class="booksy-perk-icon">✦</span> Przypomnienie SMS przed wizytą</div>
-            <div class="booksy-perk"><span class="booksy-perk-icon">✦</span> Wybór usługi i dokładnego terminu</div>
-            <div class="booksy-perk"><span class="booksy-perk-icon">✦</span> Bezpłatna konsultacja w ofercie</div>
-          </div>
-          <a href="https://booksy.com/pl-pl/94609_lola-beauty-house_brwi-i-rzesy_10132_trzebinia" target="_blank" rel="noopener" class="booksy-btn">
-            Zarezerwuj wizytę →
-          </a>
-          <p class="booksy-note">Wolisz zadzwonić? <a href="tel:+48797673934">797 673 934</a></p>
-        </div>
+    <!-- social -->
+    <div class="contact-social-row reveal">
+      <div class="c-social-label">Obserwuj nas</div>
+      <div class="social-pills">
+        <a href="https://www.instagram.com/lolabeautyhouse/" target="_blank" rel="noopener" class="social-pill">
+          <svg fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+            <rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor" stroke="none"/>
+          </svg>
+          Instagram
+        </a>
+        <a href="https://www.facebook.com/Lolabeautyhousee/" target="_blank" rel="noopener" class="social-pill">
+          <svg fill="currentColor" viewBox="0 0 24 24" width="13" height="13">
+            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+          </svg>
+          Facebook
+        </a>
       </div>
     </div>
   </div>
