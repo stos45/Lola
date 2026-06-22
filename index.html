@@ -524,29 +524,47 @@
 
     /* ── CONTACT ── */
     .contact-section { background: var(--white); }
-    .contact-head { text-align: center; margin-bottom: 4rem; }
+    .contact-head { text-align: center; margin-bottom: 3.5rem; }
     .contact-head .eyebrow { justify-content: center; }
-    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; }
-    .contact-item { display: flex; gap: 1.25rem; margin-bottom: 2rem; align-items: flex-start; }
-    .contact-icon {
-      width: 46px; height: 46px; background: var(--lav-100); border-radius: 50%;
+
+    /* 3 info cards row */
+    .contact-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 3.5rem; }
+    .ci-card {
+      background: var(--lav-50); border: 1px solid var(--lav-100);
+      border-radius: 16px; padding: 2.25rem 2rem;
+      display: flex; flex-direction: column; gap: .85rem;
+      transition: border-color .3s, box-shadow .3s;
+    }
+    .ci-card:hover { border-color: var(--lav-300); box-shadow: 0 8px 32px rgba(148,120,188,.1); }
+    .ci-icon {
+      width: 52px; height: 52px; background: var(--white); border-radius: 12px;
+      border: 1px solid var(--lav-200);
       display: flex; align-items: center; justify-content: center; flex-shrink: 0;
     }
-    .contact-icon svg { width: 18px; height: 18px; color: var(--lav-500); }
-    .c-label { font-size: .62rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: .3rem; }
-    .c-value { font-size: .9rem; color: var(--ink); font-weight: 500; line-height: 1.6; }
-    .c-value a { color: inherit; text-decoration: none; transition: color .3s; }
-    .c-value a:hover { color: var(--lav-500); }
-    .c-social { margin-top: 2.5rem; }
+    .ci-icon svg { width: 20px; height: 20px; color: var(--lav-500); }
+    .ci-label { font-size: .62rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--ink-soft); }
+    .ci-value { font-size: .95rem; color: var(--ink); font-weight: 500; line-height: 1.65; }
+    .ci-value a { color: inherit; text-decoration: none; transition: color .3s; }
+    .ci-value a:hover { color: var(--lav-500); }
+
+    /* bottom: social left, booksy right */
+    .contact-bottom { display: grid; grid-template-columns: 1fr 1.7fr; gap: 4rem; align-items: start; }
+    .contact-social-block { display: flex; flex-direction: column; gap: 2rem; }
     .c-social-label { font-size: .62rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 1rem; }
-    .social-pills { display: flex; gap: .75rem; }
+    .social-pills { display: flex; gap: .75rem; flex-wrap: wrap; }
     .social-pill {
-      display: flex; align-items: center; gap: .5rem; padding: .6rem 1.25rem;
+      display: flex; align-items: center; gap: .5rem; padding: .65rem 1.4rem;
       border: 1px solid var(--lav-200); border-radius: 2px;
       font-size: .72rem; font-weight: 500; color: var(--ink); text-decoration: none; transition: all .3s;
     }
     .social-pill svg { width: 13px; height: 13px; }
     .social-pill:hover { background: var(--lav-500); color: #fff; border-color: var(--lav-500); }
+    .contact-tagline {
+      font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 300;
+      font-style: italic; color: var(--ink-mid); line-height: 1.5;
+      padding-top: 1.5rem; border-top: 1px solid var(--lav-100);
+    }
+    .contact-tagline strong { color: var(--lav-500); font-weight: 600; font-style: normal; }
 
     /* booksy panel */
     .booksy-panel {
@@ -1096,37 +1114,42 @@
       <div class="eyebrow"><span class="eyebrow-d">✦</span> Kontakt</div>
       <h2 class="heading">Zarezerwuj <em>wizytę</em></h2>
     </div>
-    <div class="contact-grid">
-      <div class="reveal">
-        <div class="contact-item">
-          <div class="contact-icon">
-            <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-              <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-            </svg>
-          </div>
-          <div><div class="c-label">Adres</div><div class="c-value">Rynek 22, Trzebinia</div></div>
+    <!-- 3 info cards -->
+    <div class="contact-cards">
+      <div class="ci-card reveal">
+        <div class="ci-icon">
+          <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+          </svg>
         </div>
-        <div class="contact-item">
-          <div class="contact-icon">
-            <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
-            </svg>
-          </div>
-          <div><div class="c-label">Telefon</div><div class="c-value"><a href="tel:+48797673934">797 673 934</a></div></div>
+        <div class="ci-label">Adres</div>
+        <div class="ci-value">Rynek 22<br />Trzebinia</div>
+      </div>
+      <div class="ci-card reveal d1">
+        <div class="ci-icon">
+          <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+          </svg>
         </div>
-        <div class="contact-item">
-          <div class="contact-icon">
-            <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-            </svg>
-          </div>
-          <div>
-            <div class="c-label">Godziny otwarcia</div>
-            <div class="c-value">Pon – Pt: 9:00 – 19:00<br />Sob: 9:00 – 15:00</div>
-          </div>
+        <div class="ci-label">Telefon</div>
+        <div class="ci-value"><a href="tel:+48797673934">797 673 934</a></div>
+      </div>
+      <div class="ci-card reveal d2">
+        <div class="ci-icon">
+          <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
         </div>
-        <div class="c-social">
+        <div class="ci-label">Godziny otwarcia</div>
+        <div class="ci-value">Pon – Pt: 9:00 – 19:00<br />Sob: 9:00 – 15:00</div>
+      </div>
+    </div>
+
+    <!-- social + booksy -->
+    <div class="contact-bottom">
+      <div class="contact-social-block reveal">
+        <div>
           <div class="c-social-label">Obserwuj nas</div>
           <div class="social-pills">
             <a href="https://www.instagram.com/lolabeautyhouse/" target="_blank" rel="noopener" class="social-pill">
@@ -1143,9 +1166,10 @@
             </a>
           </div>
         </div>
+        <p class="contact-tagline">Piękno to nasza<br /><strong>pasja i odpowiedzialność</strong></p>
       </div>
 
-      <div class="reveal d2">
+      <div class="reveal d1">
         <div class="booksy-panel">
           <div class="booksy-top">
             <div class="booksy-badge">✦ Rezerwacja online</div>
