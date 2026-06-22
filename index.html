@@ -608,24 +608,6 @@
     }
     .footer-copy { font-size: .72rem; color: rgba(255,255,255,.25); }
 
-    /* ── CUSTOM CURSOR ── */
-    body { cursor: none; }
-    a, button, [onclick], .g-tile, .service-card, .course-card, .g-btn { cursor: none; }
-    .cur-star {
-      position: fixed; top: 0; left: 0; pointer-events: none; z-index: 99999;
-      font-size: 1.1rem; color: var(--lav-500); line-height: 1;
-      transition: color .2s, font-size .2s, opacity .3s;
-      transform-origin: center; will-change: transform;
-      mix-blend-mode: multiply;
-    }
-    .cur-dot {
-      position: fixed; top: 0; left: 0; pointer-events: none; z-index: 99998;
-      width: 6px; height: 6px; border-radius: 50%;
-      background: var(--lav-500); will-change: transform;
-      transition: transform .05s, width .2s, height .2s, background .2s;
-    }
-    .cur-star.hovering { font-size: 1.8rem; color: var(--lav-600); }
-    .cur-dot.hovering { width: 36px; height: 36px; background: rgba(148,120,188,.12); margin: -15px 0 0 -15px; }
 
     /* ── LIGHTBOX ── */
     .lightbox {
@@ -643,7 +625,7 @@
     .lb-close {
       position: absolute; top: 1rem; right: 1rem; z-index: 2;
       width: 36px; height: 36px; border-radius: 50%; border: 1px solid rgba(255,255,255,.3);
-      background: rgba(255,255,255,.1); color: #fff; font-size: 1rem; cursor: none;
+      background: rgba(255,255,255,.1); color: #fff; font-size: 1rem; cursor: pointer;
       display: flex; align-items: center; justify-content: center;
     }
 
@@ -1288,62 +1270,6 @@
     setTimeout(() => { btn.textContent = 'Wyślij wiadomość'; btn.style.background = ''; e.target.reset(); }, 3000);
   }
 
-  /* ── A: CUSTOM CURSOR ── */
-  const curStar = document.createElement('div');
-  curStar.className = 'cur-star';
-  curStar.textContent = '✦';
-  const curDot = document.createElement('div');
-  curDot.className = 'cur-dot';
-  document.body.append(curStar, curDot);
-
-  let mx = -100, my = -100, sx = -100, sy = -100;
-  document.addEventListener('mousemove', e => {
-    mx = e.clientX; my = e.clientY;
-    curDot.style.transform = `translate(${mx - 3}px, ${my - 3}px)`;
-  });
-  (function animCursor() {
-    sx += (mx - sx) * .11; sy += (my - sy) * .11;
-    curStar.style.transform = `translate(${sx - 9}px, ${sy - 9}px)`;
-    requestAnimationFrame(animCursor);
-  })();
-  document.querySelectorAll('a, button, .g-tile, .service-card, .course-card, .g-btn').forEach(el => {
-    el.addEventListener('mouseenter', () => { curStar.classList.add('hovering'); curDot.classList.add('hovering'); });
-    el.addEventListener('mouseleave', () => { curStar.classList.remove('hovering'); curDot.classList.remove('hovering'); });
-  });
-
-  /* ── C: PARALLAX HERO ── */
-  const heroOrbs = document.querySelectorAll('.hero-orb');
-  const heroArtWrap = document.querySelector('.hero-art');
-  window.addEventListener('scroll', () => {
-    const y = window.scrollY;
-    heroOrbs.forEach((o, i) => { o.style.transform = `translateY(${y * (i === 0 ? .12 : .07)}px)`; });
-    if (heroArtWrap) heroArtWrap.style.marginTop = `${y * .18}px`;
-  }, { passive: true });
-
-  /* ── D: ANIMATED COUNTERS ── */
-  function runCounter(el, target, suffix) {
-    let n = 0; const dur = 1800; const start = performance.now();
-    const tick = t => {
-      const prog = Math.min((t - start) / dur, 1);
-      const ease = 1 - Math.pow(1 - prog, 3);
-      n = Math.floor(ease * target);
-      el.textContent = n + suffix;
-      if (prog < 1) requestAnimationFrame(tick);
-      else el.textContent = target + suffix;
-    };
-    requestAnimationFrame(tick);
-  }
-  const counterObs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (!e.isIntersecting) return;
-      const el = e.target;
-      const raw = el.dataset.count;
-      const suffix = el.dataset.suffix || '';
-      runCounter(el, parseInt(raw), suffix);
-      counterObs.unobserve(el);
-    });
-  }, { threshold: .5 });
-  document.querySelectorAll('[data-count]').forEach(el => counterObs.observe(el));
 
   /* ── F: GALLERY LIGHTBOX ── */
   document.querySelectorAll('.g-tile').forEach(tile => {
@@ -1366,20 +1292,6 @@
     });
   });
 
-  /* ── G: 3D TILT ON SERVICE CARDS ── */
-  document.querySelectorAll('.service-card').forEach(card => {
-    card.addEventListener('mousemove', e => {
-      const r = card.getBoundingClientRect();
-      const x = (e.clientX - r.left) / r.width  - .5;
-      const y = (e.clientY - r.top)  / r.height - .5;
-      card.style.transition = 'transform .08s ease';
-      card.style.transform = `perspective(900px) rotateY(${x*10}deg) rotateX(${-y*10}deg) scale(1.025)`;
-    });
-    card.addEventListener('mouseleave', () => {
-      card.style.transition = 'transform .5s ease';
-      card.style.transform = '';
-    });
-  });
 </script>
 </body>
 </html>
