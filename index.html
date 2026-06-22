@@ -700,6 +700,15 @@
     }
     .mobile-menu-social a:hover { background: var(--lav-500); color: #fff; }
     .mobile-menu-social svg { width: 14px; height: 14px; }
+    .mobile-menu-close {
+      position: absolute; top: 1.5rem; right: 1.5rem;
+      width: 44px; height: 44px; border-radius: 50%;
+      border: 1px solid var(--lav-200); background: none;
+      font-size: 1.1rem; color: var(--ink); cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all .2s;
+    }
+    .mobile-menu-close:hover { background: var(--lav-100); border-color: var(--lav-300); }
 
     /* ── MAP ── */
     .contact-map {
@@ -784,6 +793,7 @@
 
 <!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-menu-close" onclick="closeMobileMenu()" aria-label="Zamknij">✕</button>
   <a href="#o-nas" class="mobile-menu-link" onclick="closeMobileMenu()">O nas</a>
   <a href="#uslugi" class="mobile-menu-link" onclick="closeMobileMenu()">Usługi</a>
   <a href="#galeria" class="mobile-menu-link" onclick="closeMobileMenu()">Galeria</a>
